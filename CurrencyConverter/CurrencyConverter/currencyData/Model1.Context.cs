@@ -13,20 +13,22 @@ namespace CurrencyConverter.currencyData
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
+
     public partial class ConvertDataEntities : DbContext
     {
         public ConvertDataEntities()
             : base("name=ConvertDataEntities")
         {
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
         public virtual DbSet<convert> converts { get; set; }
         public virtual DbSet<currency> currencies { get; set; }
         public virtual DbSet<exchange_rates> exchange_rates { get; set; }
+
     }
 }

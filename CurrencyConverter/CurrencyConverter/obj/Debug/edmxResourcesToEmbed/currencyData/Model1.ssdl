@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ConvertDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="converts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="currency_from" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="currency_to" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="amount_from" Type="money" Nullable="false" />
+    <Property Name="amount_to" Type="money" Nullable="false" />
+    <Property Name="convert_date" Type="datetime" Nullable="false" />
+    <Property Name="comment" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="currencies">
+    <Key>
+      <PropertyRef Name="currency_code" />
+    </Key>
+    <Property Name="currency_code" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="currency_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="currency_name_eng" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="order_num" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="exchange_rates">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="currency_code" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="buy_rate" Type="decimal" Precision="10" Scale="4" Nullable="false" />
+    <Property Name="sell_rate" Type="decimal" Precision="10" Scale="4" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_converts_currencies">
+    <End Role="currencies" Type="Self.currencies" Multiplicity="1" />
+    <End Role="converts" Type="Self.converts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="currencies">
+        <PropertyRef Name="currency_code" />
+      </Principal>
+      <Dependent Role="converts">
+        <PropertyRef Name="currency_from" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_converts_currencies1">
+    <End Role="currencies" Type="Self.currencies" Multiplicity="1" />
+    <End Role="converts" Type="Self.converts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="currencies">
+        <PropertyRef Name="currency_code" />
+      </Principal>
+      <Dependent Role="converts">
+        <PropertyRef Name="currency_to" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_currencies_currencies">
+    <End Role="currencies" Type="Self.currencies" Multiplicity="1" />
+    <End Role="currencies1" Type="Self.currencies" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="currencies">
+        <PropertyRef Name="currency_code" />
+      </Principal>
+      <Dependent Role="currencies1">
+        <PropertyRef Name="currency_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_exchange_rates_currencies">
+    <End Role="currencies" Type="Self.currencies" Multiplicity="1" />
+    <End Role="exchange_rates" Type="Self.exchange_rates" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="currencies">
+        <PropertyRef Name="currency_code" />
+      </Principal>
+      <Dependent Role="exchange_rates">
+        <PropertyRef Name="currency_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ConvertDataModelStoreContainer">
+    <EntitySet Name="converts" EntityType="Self.converts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="currencies" EntityType="Self.currencies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="exchange_rates" EntityType="Self.exchange_rates" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_converts_currencies" Association="Self.FK_converts_currencies">
+      <End Role="currencies" EntitySet="currencies" />
+      <End Role="converts" EntitySet="converts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_converts_currencies1" Association="Self.FK_converts_currencies1">
+      <End Role="currencies" EntitySet="currencies" />
+      <End Role="converts" EntitySet="converts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_currencies_currencies" Association="Self.FK_currencies_currencies">
+      <End Role="currencies" EntitySet="currencies" />
+      <End Role="currencies1" EntitySet="currencies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_exchange_rates_currencies" Association="Self.FK_exchange_rates_currencies">
+      <End Role="currencies" EntitySet="currencies" />
+      <End Role="exchange_rates" EntitySet="exchange_rates" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

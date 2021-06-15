@@ -1,0 +1,50 @@
+﻿@model IEnumerable<CurrencyConverter.currencyData.currency>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>ვალუტების რეესტრი</h2>
+
+<p>
+    @Html.ActionLink("ვალუტის დამატება", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            ვალუტის კოდი
+        </th>
+        <th>
+            ვალუტის დასახელება
+        </th>
+        <th>
+            ვალუტის დასახელება ლათინურად
+        </th>
+        <th>
+            თანმიმდევრობის ინდექსი
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.currency_code)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.currency_name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.currency_name_eng)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.order_num)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.currency_code }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.currency_code })
+    </td>
+</tr>
+}
+
+</table>

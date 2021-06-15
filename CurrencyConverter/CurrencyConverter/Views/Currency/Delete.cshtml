@@ -1,0 +1,54 @@
+﻿@model CurrencyConverter.currencyData.currency
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>ვალუტის წაშლა</h2>
+
+<h3>დარწმუნებული ხართ, რომ გსურთ ვალუტის წაშლა?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            ვალუტის კოდი
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.currency_code)
+        </dd>
+        <dt>
+           ვალუტის დასახელება
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.currency_name)
+        </dd>
+
+        <dt>
+            ვალუტის დასახელება ლათინურად
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.currency_name_eng)
+        </dd>
+
+        <dt>
+            თანმიმდევრობის ინდექსი
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.order_num)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="წაშლა" class="btn btn-default" /> |
+            @Html.ActionLink("უკან დაბრუნება", "Index")
+        </div>
+    }
+</div>

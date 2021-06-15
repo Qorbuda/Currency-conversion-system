@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ConvertDataModelStoreContainer" CdmEntityContainer="ConvertDataEntities">
+    <EntitySetMapping Name="converts">
+      <EntityTypeMapping TypeName="ConvertDataModel.convert">
+        <MappingFragment StoreEntitySet="converts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="currency_from" ColumnName="currency_from" />
+          <ScalarProperty Name="currency_to" ColumnName="currency_to" />
+          <ScalarProperty Name="amount_from" ColumnName="amount_from" />
+          <ScalarProperty Name="amount_to" ColumnName="amount_to" />
+          <ScalarProperty Name="convert_date" ColumnName="convert_date" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="currencies">
+      <EntityTypeMapping TypeName="ConvertDataModel.currency">
+        <MappingFragment StoreEntitySet="currencies">
+          <ScalarProperty Name="currency_code" ColumnName="currency_code" />
+          <ScalarProperty Name="currency_name" ColumnName="currency_name" />
+          <ScalarProperty Name="currency_name_eng" ColumnName="currency_name_eng" />
+          <ScalarProperty Name="order_num" ColumnName="order_num" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="exchange_rates">
+      <EntityTypeMapping TypeName="ConvertDataModel.exchange_rates">
+        <MappingFragment StoreEntitySet="exchange_rates">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="currency_code" ColumnName="currency_code" />
+          <ScalarProperty Name="buy_rate" ColumnName="buy_rate" />
+          <ScalarProperty Name="sell_rate" ColumnName="sell_rate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
