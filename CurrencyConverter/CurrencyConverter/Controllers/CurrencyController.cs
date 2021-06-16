@@ -36,7 +36,7 @@ namespace CurrencyConverter.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
+                if (ModelState.IsValid && currency.currency_code.Length == 3)
                 {
                     db.currencies.Add(currency);
                     db.SaveChanges();
@@ -45,7 +45,7 @@ namespace CurrencyConverter.Controllers
                 }
                 else
                 {
-                    ViewBag.Message = string.Format("Error, enter valid code");
+                    ViewBag.Message = string.Format("Please enter valid code");
                 }
             }
             catch
@@ -113,6 +113,7 @@ namespace CurrencyConverter.Controllers
             return RedirectToAction("Index");
         }
 
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing)

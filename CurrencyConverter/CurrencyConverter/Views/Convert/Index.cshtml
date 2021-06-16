@@ -1,0 +1,62 @@
+﻿@model IEnumerable<CurrencyConverter.currencyData.convert>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>კონვერტაციები</h2>
+
+<p>
+    @Html.ActionLink("კონვერტაციის შესრულება", "Index", "CurrencyModel")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            მისაღები ვალუტა
+        </th>
+        <th>
+            გასაცემი ვალუტა
+        </th>
+        <th>
+            მისაღები თანხა
+        </th>
+        <th>
+            გასაცემი თანხა
+        </th>
+        <th>
+           კონვერტაციის თარიღი
+        </th>
+        <th>
+            კომენტარი
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.currency_from)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.currency_to)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.amount_from)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.amount_to)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.convert_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.comment)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

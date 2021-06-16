@@ -1,0 +1,44 @@
+﻿@model IEnumerable<CurrencyConverter.currencyData.exchange_rates>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>ვალუტის კურსები</h2>
+
+<p>
+    @Html.ActionLink("კურსის დამატება", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+           ვალუტის კოდი
+        </th>
+        <th>
+            ყიდვის კურსი
+        </th>
+        <th>
+           გაყიდვის კურსი
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.currency.currency_code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.buy_rate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sell_rate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

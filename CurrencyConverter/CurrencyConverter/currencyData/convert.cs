@@ -11,9 +11,11 @@ namespace CurrencyConverter.currencyData
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class convert
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string currency_from { get; set; }
         public string currency_to { get; set; }
