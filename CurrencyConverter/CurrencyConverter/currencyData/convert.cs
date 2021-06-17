@@ -15,7 +15,7 @@ namespace CurrencyConverter.currencyData
 
     public partial class convert
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
         public string currency_from { get; set; }
         public string currency_to { get; set; }

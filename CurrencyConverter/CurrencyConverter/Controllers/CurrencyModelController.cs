@@ -22,7 +22,18 @@ namespace CurrencyConverter.Controllers
         [HttpPost]
         public ActionResult Index(ConvertModel model)
         {
+            var codeList = db.exchange_rates.Select(c => c.currency_code).ToList();
+            ViewBag.data = codeList;
+            ViewBag.Message = null;
+            if (getAmount(model.CurrTo, model.AmountTo) >= 3000 && model.Comment == null)
+            {
+                
+                ViewBag.Message = "Please enter comment";
+
+                return View();
+            }
             convert temp = new convert();
+            
             temp.currency_from = model.CurrFrom;
             temp.currency_to = model.CurrTo;
             temp.amount_from = model.AmountFrom;
@@ -42,11 +53,17 @@ namespace CurrencyConverter.Controllers
             return Json(Math.Round(fromRate/toRate, 4), JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
+        
         public JsonResult getAmountInGel(string toCurr, decimal amount)
         {
             var toRate = db.exchange_rates.FirstOrDefault(e => e.currency_code == toCurr).buy_rate;
             return Json(Math.Round(amount * toRate, 4), JsonRequestBehavior.AllowGet);
+        }
+
+        private decimal getAmount(string toCurr, decimal amount)
+        {
+            var toRate = db.exchange_rates.FirstOrDefault(e => e.currency_code == toCurr).buy_rate;
+            return Math.Round(amount * toRate, 4);
         }
 
     }

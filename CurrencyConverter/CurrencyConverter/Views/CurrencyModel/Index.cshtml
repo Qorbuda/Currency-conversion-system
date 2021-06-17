@@ -52,7 +52,11 @@
             @Html.LabelFor(model => model.Comment, "კომენტარი", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Comment, new { htmlAttributes = new { @class = "form-control", id = "comment"} })
-                @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger"})
+                @if (ViewBag.Message != null)
+                {
+                <Label class = "text-danger"  id="commentVal"> Please enter comment</Label>
+                }
             </div>
         </div>
 
@@ -73,14 +77,14 @@
     <script src="~/Scripts/jquery-3.4.1.js"></script>
     <script>
         $("#document").ready(function () {
-            
+
             $('#AmountFrom').on('change', function () {
                 $.ajax({
                     type: 'POST',
                     url: '/CurrencyModel/getCoeficient?fromCurr=' + $('#FromCurr').val() + '&toCurr=' + $('#ToCurr').val(),
                     contextType: 'application/json; charset=utf-8',
                     contentType: 'html',
-                    
+
                     success: function (result) {
                         $('#AmountTo').val($('#AmountFrom').val() * result)
                     },
@@ -128,23 +132,6 @@
 
                     success: function (result) {
                         $('#AmountTo').val($('#AmountFrom').val() * result)
-                    },
-                    error: function (error) {
-                        alert("Request: " + JSON.stringify(error));
-                    }
-                });
-            });
-            $('#AmountTo').on('change', function () {
-                $.ajax({
-                    type: 'POST',
-                    url: '/CurrencyModel/getAmountInGel?toCurr=' + $('#ToCurr').val() + '&amount=' + $('#AmountTo').val(),
-                    contextType: 'application/json; charset=utf-8',
-                    contentType: 'html',
-
-                    success: function (result) {
-                        if (result >= 3000 && $('#comment').val() == null) {
-                            alert("Please Enter message");
-                        }
                     },
                     error: function (error) {
                         alert("Request: " + JSON.stringify(error));

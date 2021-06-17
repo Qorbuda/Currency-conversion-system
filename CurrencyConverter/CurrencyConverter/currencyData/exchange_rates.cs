@@ -11,9 +11,11 @@ namespace CurrencyConverter.currencyData
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class exchange_rates
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
         public string currency_code { get; set; }
         public decimal buy_rate { get; set; }
