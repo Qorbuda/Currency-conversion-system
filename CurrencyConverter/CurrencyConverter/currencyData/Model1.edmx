@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="currency_from" Type="varchar" MaxLength="3" Nullable="false" />
           <Property Name="currency_to" Type="varchar" MaxLength="3" Nullable="false" />
           <Property Name="amount_from" Type="money" Nullable="false" />
@@ -30,7 +30,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="currency_code" Type="varchar" MaxLength="3" Nullable="false" />
           <Property Name="buy_rate" Type="decimal" Precision="10" Scale="4" Nullable="false" />
           <Property Name="sell_rate" Type="decimal" Precision="10" Scale="4" Nullable="false" />
@@ -59,18 +59,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_currencies_currencies">
-          <End Role="currencies" Type="Self.currencies" Multiplicity="1" />
-          <End Role="currencies1" Type="Self.currencies" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="currencies">
-              <PropertyRef Name="currency_code" />
-            </Principal>
-            <Dependent Role="currencies1">
-              <PropertyRef Name="currency_code" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_exchange_rates_currencies">
           <End Role="currencies" Type="Self.currencies" Multiplicity="1" />
           <End Role="exchange_rates" Type="Self.exchange_rates" Multiplicity="*" />
@@ -95,10 +83,6 @@
             <End Role="currencies" EntitySet="currencies" />
             <End Role="converts" EntitySet="converts" />
           </AssociationSet>
-          <AssociationSet Name="FK_currencies_currencies" Association="Self.FK_currencies_currencies">
-            <End Role="currencies" EntitySet="currencies" />
-            <End Role="currencies1" EntitySet="currencies" />
-          </AssociationSet>
           <AssociationSet Name="FK_exchange_rates_currencies" Association="Self.FK_exchange_rates_currencies">
             <End Role="currencies" EntitySet="currencies" />
             <End Role="exchange_rates" EntitySet="exchange_rates" />
@@ -113,7 +97,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="currency_from" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="currency_to" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="amount_from" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
@@ -121,6 +105,7 @@
           <Property Name="convert_date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="currency" Relationship="Self.FK_converts_currencies" FromRole="converts" ToRole="currencies" />
+          <NavigationProperty Name="currency1" Relationship="Self.FK_converts_currencies1" FromRole="converts" ToRole="currencies" />
         </EntityType>
         <EntityType Name="currency">
           <Key>
@@ -131,13 +116,14 @@
           <Property Name="currency_name_eng" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="order_num" Type="Int32" Nullable="false" />
           <NavigationProperty Name="converts" Relationship="Self.FK_converts_currencies" FromRole="currencies" ToRole="converts" />
+          <NavigationProperty Name="converts1" Relationship="Self.FK_converts_currencies1" FromRole="currencies" ToRole="converts" />
           <NavigationProperty Name="exchange_rates" Relationship="Self.FK_exchange_rates_currencies" FromRole="currencies" ToRole="exchange_rates" />
         </EntityType>
         <EntityType Name="exchange_rates">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="currency_code" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="buy_rate" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
           <Property Name="sell_rate" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
@@ -167,18 +153,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_currencies_currencies">
-          <End Role="currencies" Type="Self.currency" Multiplicity="1" />
-          <End Role="currencies1" Type="Self.currency" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="currencies">
-              <PropertyRef Name="currency_code" />
-            </Principal>
-            <Dependent Role="currencies1">
-              <PropertyRef Name="currency_code" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_exchange_rates_currencies">
           <End Role="currencies" Type="Self.currency" Multiplicity="1" />
           <End Role="exchange_rates" Type="Self.exchange_rates" Multiplicity="*" />
@@ -191,7 +165,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ConvertDataEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ConvertDataEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="converts" EntityType="Self.convert" />
           <EntitySet Name="currencies" EntityType="Self.currency" />
           <EntitySet Name="exchange_rates" EntityType="Self.exchange_rates" />
@@ -203,10 +177,6 @@
             <End Role="currencies" EntitySet="currencies" />
             <End Role="converts" EntitySet="converts" />
           </AssociationSet>
-          <AssociationSet Name="FK_currencies_currencies" Association="Self.FK_currencies_currencies">
-            <End Role="currencies" EntitySet="currencies" />
-            <End Role="currencies1" EntitySet="currencies" />
-          </AssociationSet>
           <AssociationSet Name="FK_exchange_rates_currencies" Association="Self.FK_exchange_rates_currencies">
             <End Role="currencies" EntitySet="currencies" />
             <End Role="exchange_rates" EntitySet="exchange_rates" />
@@ -217,7 +187,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ConvertDataModelStoreContainer" CdmEntityContainer="ConvertDataEntities">
+        <EntityContainerMapping StorageEntityContainer="ConvertDataModelStoreContainer" CdmEntityContainer="ConvertDataEntities2">
           <EntitySetMapping Name="converts">
             <EntityTypeMapping TypeName="ConvertDataModel.convert">
               <MappingFragment StoreEntitySet="converts">

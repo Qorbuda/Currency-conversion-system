@@ -4,13 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="48611d67b8854d72a0cd80653e205d6e" Name="Diagram1">
+      <Diagram DiagramId="680400092d5b4abebbf375f04255b7eb" Name="Diagram1">
         <EntityTypeShape EntityType="ConvertDataModel.convert" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ConvertDataModel.currency" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ConvertDataModel.exchange_rates" Width="1.5" PointX="4.875" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ConvertDataModel.currency" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ConvertDataModel.exchange_rates" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
         <AssociationConnector Association="ConvertDataModel.FK_converts_currencies" ManuallyRouted="false" />
         <AssociationConnector Association="ConvertDataModel.FK_converts_currencies1" ManuallyRouted="false" />
-        <AssociationConnector Association="ConvertDataModel.FK_currencies_currencies" ManuallyRouted="false" />
         <AssociationConnector Association="ConvertDataModel.FK_exchange_rates_currencies" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

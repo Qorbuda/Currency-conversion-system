@@ -11,11 +11,9 @@ namespace CurrencyConverter.currencyData
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations.Schema;
-
+    
     public partial class convert
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
         public string currency_from { get; set; }
         public string currency_to { get; set; }
@@ -25,5 +23,6 @@ namespace CurrencyConverter.currencyData
         public string comment { get; set; }
     
         public virtual currency currency { get; set; }
+        public virtual currency currency1 { get; set; }
     }
 }

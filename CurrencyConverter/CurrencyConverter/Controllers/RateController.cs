@@ -12,7 +12,7 @@ namespace CurrencyConverter.Controllers
 {
     public class RateController : Controller
     {
-        private ConvertDataEntities db = new ConvertDataEntities();
+        private ConvertDataEntities2 db = new ConvertDataEntities2();
 
         // GET: Rate
         public ActionResult Index()

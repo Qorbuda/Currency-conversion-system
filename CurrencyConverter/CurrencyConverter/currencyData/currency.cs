@@ -18,6 +18,7 @@ namespace CurrencyConverter.currencyData
         public currency()
         {
             this.converts = new HashSet<convert>();
+            this.converts1 = new HashSet<convert>();
             this.exchange_rates = new HashSet<exchange_rates>();
         }
     
@@ -29,9 +30,8 @@ namespace CurrencyConverter.currencyData
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<convert> converts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<convert> converts1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<exchange_rates> exchange_rates { get; set; }
-
-        
-        
     }
 }

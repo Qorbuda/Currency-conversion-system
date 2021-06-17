@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ConvertDataModelStoreContainer" CdmEntityContainer="ConvertDataEntities">
+  <EntityContainerMapping StorageEntityContainer="ConvertDataModelStoreContainer" CdmEntityContainer="ConvertDataEntities2">
     <EntitySetMapping Name="converts">
       <EntityTypeMapping TypeName="ConvertDataModel.convert">
         <MappingFragment StoreEntitySet="converts">
